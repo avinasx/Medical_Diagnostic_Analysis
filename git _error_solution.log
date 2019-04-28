@@ -41,3 +41,31 @@ git fetch origin master:tmp
 git rebase tmp
 git push origin HEAD:master
 git branch -D tmp
+
+
+normal git commands
+in local repo:
+             git init
+             git add .
+             git commit
+             
+connecting to central repo
+             git remote add origin git@github.com:username/new_repo
+               above command is for connection via ssh, below isfor hhtp(it will ask for password again and again, i.e not reccomended)
+             git remote add origin https://github.com/username/new_repo
+
+             then
+             git push -u origin master
+
+            above commad will open ur fav text editor(that u have set during installation), for commit massage.
+             
+
+once all of this setup done, you have to repeat these three commands
+           git add .
+           git commit
+           git push -u origin master 
+
+
+
+
+   
