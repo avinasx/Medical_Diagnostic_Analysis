@@ -1,0 +1,136 @@
+*************************************************************************
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| assignment1        |
+| juxt               |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
+| test1              |
+| wp                 |
++--------------------+
+9 rows in set (0.00 sec)
+
+
+
+mysql> USE juxt;
+Database changed
+
+
+mysql> SHOW TABLES;
++----------------+
+| Tables_in_juxt |
++----------------+
+| t1             |
++----------------+
+
+
+
+mysql> DESCRIBE t1;
++------------+------------+------+-----+---------+-------+
+| Field      | Type       | Null | Key | Default | Extra |
++------------+------------+------+-----+---------+-------+
+| patientID  | int(11)    | YES  |     | NULL    |       |
+| disorder   | varchar(2) | YES  |     | NULL    |       |
+| diagnostic | varchar(2) | YES  |     | NULL    |       |
+| proce      | varchar(2) | YES  |     | NULL    |       |
++------------+------------+------+-----+---------+-------+
+
+
+
+
+mysql> SELECT * FROM t1;
++-----------+----------+------------+-------+
+| patientID | disorder | diagnostic | proce |
++-----------+----------+------------+-------+
+|         1 | a1       | p1         | x1    |
+|         1 | a2       | p1         | x2    |
+|         1 | a2       | p1         | x1    |
+|         1 | a3       | p2         | x3    |
+|         2 | a1       | p2         | x1    |
+|         2 | a1       | p1         | x1    |
+|         2 | a3       | p2         | x2    |
+|         3 | a1       | p3         | x2    |
+|         3 | a1       | p2         | x1    |
++-----------+----------+------------+-------+
+9 rows in set (0.00 sec)
+
+
+
+
+
+mysql> SELECT DISTINCT patientID FROM t1
+    -> WHERE diagnostic = "p1"
+    -> AND PatientID IN
+    -> (SELECT PatientID FROM t1 tb1
+    -> JOIN t1 tb2 USING( PatientID )
+    -> WHERE tb1.proce = 'x1'
+    -> AND tb2.proce = 'x2');
++-----------+
+| patientID |
++-----------+
+|         1 |
+|         2 |
++-----------+
+2 rows in set (0.00 sec)
+
+
+
+
+mysql> SELECT DISTINCT disorder FROM t1
+    -> WHERE diagnostic = "p1"
+    -> AND disorder IN
+    -> (SELECT disorder FROM t1 tb1
+    -> JOIN t1 tb2 USING( disorder )
+    -> WHERE tb1.proce = 'x1'
+    -> AND tb2.proce = 'x2');
++----------+
+| disorder |
++----------+
+| a1       |
+| a2       |
++----------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+*************************************************************************
+
+Programms:
+Programs are typically stored on disk or in non-volatile memory in a form that can be executed by your computer. Prior to that, they are created using a programming language such as C, PASCAL, JAVA python or many others using instructions that involve logic, data and device manipulation, recurrence, and user interaction. The end result is a text file of code that is compiled into binary form (1’s and 0’s) in order to run on the computer. Another type of program is called “interpreted,” and instead of being compiled in advance in order to run, is interpreted into executable code at the time it is run. Some common, typically interpreted programming languages, are Python, PHP, JavaScript, and Ruby.
+
+The end result is the same, however, in that when a program is run, it is loaded into memory in binary form. The computer’s CPU (Central Processing Unit) understands only binary instructions, so that’s the form the program needs to be in when it runs.
+
+
+
+
+How Processes Work
+The program has been loaded into the computer’s memory in binary form. 
+
+An executing program needs more than just the binary code that tells the computer what to do. The program needs memory and various operating system resources in order to run. A “process” is what we call a program that has been loaded into memory along with all the resources it needs to operate. The “operating system” is the brains behind allocating all these resources, and comes in different flavors such as macOS, iOS, Microsoft Windows, Linux, and Android. The OS handles the task of managing the resources needed to turn your program into a running process.
+
+Some essential resources every process needs are registers, a program counter, and a stack. The “registers” are data holding places that are part of the computer processor (CPU). A register may hold an instruction, a storage address, or other kind of data needed by the process. The “program counter,” also called the “instruction pointer,” keeps track of where a computer is in its program sequence. The “stack” is a data structure that stores information about the active subroutines of a computer program and is used as scratch space for the process. It is distinguished from dynamically allocated memory for the process that is known as the “heap.”
+
+
+There can be multiple instances of a single program, and each instance of that running program is a process. Each process has a separate memory address space, which means that a process runs independently and is isolated from other processes. It cannot directly access shared data in other processes. Switching from one process to another requires some time (relatively) for saving and loading registers, memory maps, and other resources.
+
+
+
+summary:
+
+1. Programe(a piece od code) is static and stored in non-volatile memory. Example, VLC.exe, chrome.exe etc. While process is running instance of a programme or when programme executes it becomes process which is stored in volatile memory.
+2. There can be multiple processes for a single programme, which are NOT allowed to share address spaces and other resources.
+ (extra : process should not be confused with threds, which are subset of processes and are allowed to share address spaces and resources among themselves)
+
+
+
+
+
+
