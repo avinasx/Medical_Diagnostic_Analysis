@@ -98,7 +98,10 @@ mysql> SELECT DISTINCT disorder FROM t1
 2 rows in set (0.00 sec)
 
 
+***********************************************************************
+adding primary key column
 
+alter table t1 add column `id` int(10) unsigned primary KEY AUTO_INCREMENT;
 
 
 *************************************************************************

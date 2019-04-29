@@ -68,4 +68,8 @@ once all of this setup done, you have to repeat these three commands
 
 
 
+to see how to setup/change default editor for git go to
+https://stackoverflow.com/questions/10564/how-can-i-set-up-an-editor-to-work-with-git-on-windows
+for notepad its simply   git config core.editor notepad
+
    
