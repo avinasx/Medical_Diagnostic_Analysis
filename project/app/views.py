@@ -12,6 +12,7 @@ mydb = mysql.connector.connect(
 diagnostic=''
 proce ='x1 x2'
 
+
 def patient(request):
     if request.method == 'POST':
         diagnostic = request.POST['diagnostic']
@@ -22,9 +23,9 @@ def patient(request):
         
         #mycursor is a saviour for sql query in dzango
         mycursor = mydb.cursor()
-
-      
         mycursor.execute("Use juxt")
+        
+      
         #mycursor.execute("SELECT DISTINCT disorder FROM t1 WHERE diagnostic = 'p1' AND disorder IN (SELECT disorder FROM t1 tb1 JOIN t1 tb2 USING( disorder ) WHERE tb1.proce = 'x1' AND tb2.proce = 'x2')")
         mycursor.execute("SELECT DISTINCT disorder FROM t1 WHERE diagnostic = %s AND disorder IN (SELECT disorder FROM t1 tb1 JOIN t1 tb2 USING( disorder ) WHERE tb1.proce = %s AND tb2.proce = %s)",(diagnostic, proce1, proce2))
         y=[''.join(y) for y in mycursor]
@@ -59,7 +60,6 @@ def test(request):
   person= {'firstname': 'Craig', 'lastname': 'Daniels'}
   weather= "jk"
   context= {
-        'person': person,
         'weather': weather,
         'leather':"jk" 
           }
