@@ -145,35 +145,5 @@ summary:
 
 
 
-<div class="container">
-    <div class="page-header">
-        <h1>Juxt Diagnose</h1>
-      </div>
-  <form method = "post" method = "POST">
-    
-    <!--<form name = "form" action = "{% url "app.views" %}" method = "POST" >-->
-         {% csrf_token %}
-  
-
-    <h3>Hey docs, let us do all the diagnostics! </h3>
-<p>Click on submit button, to get the corresponding PatientID and Disorder </p>
-<!--<p>Hi {{ person.firstname }} {{ person.lastname }}</p>
-<p>Today it is {{ weather }}</p>-->
-<p>{{ leather }}</p>
-
-    <div class="form-group">
-      <label for="proce">Procedure</label>
-      <input type="proce" class="form-control" id="email" placeholder="Enter Procedure, ex: x1 or x2" name="Proce">
-    </div>
-    <div class="form-group">
-      <label for="diagnostic">Diagnostic:</label>
-      <input type="diagnostic" class="form-control" id="diagnostic" placeholder="Enter Diagnostic, ex: p1 or p2 " name="diagnostic">
-   
-    <br><button type="submit" class="btn btn-default">Submit</button>
-  </form>
-</div>
-
-</body>
-</html>
-
+s
 
