@@ -61,6 +61,14 @@ mysql> SELECT * FROM t1;
 9 rows in set (0.00 sec)
 
 
+*************************************
+QUERY
+Condition: to get the list of patientID and disorder which has gone through procedure x1 & x2, and have been diagnosed to have p1.
+
+diagnostic: p1; proce = x1,x2
+patientID=?, disorder=?
+
+*************************************
 
 
 
@@ -106,6 +114,9 @@ alter table t1 add column `id` int(10) unsigned primary KEY AUTO_INCREMENT;
 
 *************************************************************************
 
+
+TEXT BELOW HAVE NO CO-RELATION WITH THE PROJECT(IGNORE)
+
 Programms:
 Programs are typically stored on disk or in non-volatile memory in a form that can be executed by your computer. Prior to that, they are created using a programming language such as C, PASCAL, JAVA python or many others using instructions that involve logic, data and device manipulation, recurrence, and user interaction. The end result is a text file of code that is compiled into binary form (1’s and 0’s) in order to run on the computer. Another type of program is called “interpreted,” and instead of being compiled in advance in order to run, is interpreted into executable code at the time it is run. Some common, typically interpreted programming languages, are Python, PHP, JavaScript, and Ruby.
 
@@ -128,12 +139,41 @@ There can be multiple instances of a single program, and each instance of that r
 
 summary:
 
-1. Programe(a piece od code) is static and stored in non-volatile memory. Example, VLC.exe, chrome.exe etc. While process is running instance of a programme or when programme executes it becomes process which is stored in volatile memory.
+1. Programe(a piece of code) is static and stored in non-volatile memory. Example, VLC.exe, chrome.exe etc. While process is running instance of a programme or when programme executes it becomes process which is stored in volatile memory.
 2. There can be multiple processes for a single programme, which are NOT allowed to share address spaces and other resources.
- (extra : process should not be confused with threds, which are subset of processes and are allowed to share address spaces and resources among themselves)
+ (extra : process should not be confused with threads, which are subset of processes and are allowed to share address spaces and resources among themselves)
 
 
 
+<div class="container">
+    <div class="page-header">
+        <h1>Juxt Diagnose</h1>
+      </div>
+  <form method = "post" method = "POST">
+    
+    <!--<form name = "form" action = "{% url "app.views" %}" method = "POST" >-->
+         {% csrf_token %}
+  
 
+    <h3>Hey docs, let us do all the diagnostics! </h3>
+<p>Click on submit button, to get the corresponding PatientID and Disorder </p>
+<!--<p>Hi {{ person.firstname }} {{ person.lastname }}</p>
+<p>Today it is {{ weather }}</p>-->
+<p>{{ leather }}</p>
+
+    <div class="form-group">
+      <label for="proce">Procedure</label>
+      <input type="proce" class="form-control" id="email" placeholder="Enter Procedure, ex: x1 or x2" name="Proce">
+    </div>
+    <div class="form-group">
+      <label for="diagnostic">Diagnostic:</label>
+      <input type="diagnostic" class="form-control" id="diagnostic" placeholder="Enter Diagnostic, ex: p1 or p2 " name="diagnostic">
+   
+    <br><button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>
 
 
