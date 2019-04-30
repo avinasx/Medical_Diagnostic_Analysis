@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+ db:
+   image: mysql
+   environment:
+     MYSQL_DATABASE: juxt
+     MYSQL_ROOT_PASSWORD: root
+   ports:
+     — "3306:3306"
+
+services:
+ app:
+   build:
+    context: .
+   ports:
+    - "8000:8000"
+   volumes:
+     - .:/project
+   command: >
+    sh -c "python project/manage.py runserver 0.0.0.0:8000 && python project/manage.py runserver 0.0.0.0:8000"
