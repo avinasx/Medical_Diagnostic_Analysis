@@ -1,14 +1,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import mysql.connector
+from django.db import connection
+#import mysql.connector #alternative to 'connection' from django.db
 
-#my sql connection
+
+
+'''
+#few examples of using my sql connection that is currently being used
+mycursor = connection.cursor()
+mycursor.execute("SELECT count(*) FROM people_person")
+>>1L
+row = cursor.fetchone()
+print row
+>>(12L,)
+Person.objects.all().count()
+>>12
+'''
+
+'''
+#my sql connection using mysqlconnect an alternative
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   passwd="root",
-  database="juxt"
+  database="juxt",
+  port=3306,
 )
+ #mycursor = mydb.cursor()
+'''
 diagnostic=''
 proce ='x1 x2'
 
@@ -22,7 +41,8 @@ def patient(request):
         proce2=str(proce2)
         
         #mycursor is a saviour for sql query in dzango
-        mycursor = mydb.cursor()
+        mycursor = connection.cursor()
+       
         mycursor.execute("Use juxt")
         
       

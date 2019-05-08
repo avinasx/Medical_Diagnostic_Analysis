@@ -1,21 +1,40 @@
 version: '3'
 
 services:
- db:
-   image: mysql
-   environment:
-     MYSQL_DATABASE: juxt
-     MYSQL_ROOT_PASSWORD: root
-   ports:
-     — "3306:3306"
+  # db:
+  #   image: mysql
+  #   ports:
+  #     - '3306:3360'
+  #   environment:
+  #      MYSQL_DATABASE: 'juxt'
+  #      MYSQL_USER: 'root'
+  #      MYSQL_PASSWORD: 'root'
+  #      MYSQL_ROOT_PASSWORD: 'root'
+    
+       
+  db:
+    image: mysql:5.7
+    container_name: db
+    ports:
+      - '3306:3306'
+    #command: "--innodb_use_native_aio=0"
+    #command: --default-authentication-plugin=mysql_native_password
+    #restart: always
+    environment:
+      MYSQL_DATABASE: juxt
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      #HOST: 'localhost'
 
-services:
- app:
-   build:
-    context: .
-   ports:
-    - "8000:8000"
-   volumes:
-     - .:/project
-   command: >
-    sh -c "python project/manage.py runserver 0.0.0.0:8000 && python project/manage.py runserver 0.0.0.0:8000"
+
+  web:
+    build: .
+    #command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
